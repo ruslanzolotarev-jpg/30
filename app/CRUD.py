@@ -11,16 +11,22 @@ async def create_tables():
 
 async def count_visit(obj: Recipe):
     await session.execute(
-        update(Recipe).filter(Recipe.id == obj.id).values(view_count=obj.view_count + 1)
+        update(Recipe)
+        .filter(Recipe.id == obj.id)
+        .values(view_count=obj.view_count + 1)
     )
 
 
 async def get_recipes_order():
-    return await session.execute(select(Recipe).order_by(desc(Recipe.view_count)))
+    return await session.execute(
+        select(Recipe).order_by(desc(Recipe.view_count))
+    )
 
 
 async def get_recipe_by_id(r_id: int):
-    obj = await session.execute(select(Recipe).filter(Recipe.id == r_id))
+    obj = await session.execute(
+        select(Recipe).filter(Recipe.id == r_id)
+    )
     rec_obj = obj.scalar()
     if rec_obj is not None:
         await count_visit(rec_obj)
