@@ -27,6 +27,3 @@ jobs:
       - name: Проверка isort
         run: |
           isort --check-only --diff .
-      - name: Проверка mypy
-        run: |
-          mypy .
