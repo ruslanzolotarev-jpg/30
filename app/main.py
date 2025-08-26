@@ -3,8 +3,7 @@ from typing import List, Union
 
 import models
 import schemas
-from CRUD import add_recipe, 
-create_tables, get_recipe_by_id, get_recipes_order
+from CRUD import add_recipe, create_tables, get_recipe_by_id, get_recipes_order
 from fastapi import FastAPI, Path
 
 
@@ -34,4 +33,5 @@ async def get_popular_recipes():
          response_model=Union[schemas.RecipeOutSecond, str])
 async def get_recipe(rec_id: int = Path(...)):  # noqa: B008
     return await get_recipe_by_id(rec_id)
+
 
