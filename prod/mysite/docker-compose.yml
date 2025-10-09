@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web:
+    image: my_django_app
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_DEBUG=1
+    volumes:
+      - ./static:/app/static
+    restart: always
