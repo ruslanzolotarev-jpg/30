@@ -1,15 +1,15 @@
-FROM python:3.11-slim-buster
+FROM python:3.11
+
+ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-COPY pyproject.toml .
-RUN pip install poetry && poetry config virtualenvs.create false && poetry install --no-dev
+RUN pip install --upgrade pip "poetry==1.5.1"
+RUN poetry config virtualenvs.create false --local
 
-COPY . .
+COPY poetry.lock  pyproject.toml ./
+RUN poetry install
 
-ENV DJANGO_SETTINGS_MODULE=config.settings.production
-ENV PYTHONUNBUFFERED=1
+COPY mysite .
 
-EXPOSE 8000
-
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "mysite.wsgi:application", "--bind", "0.0.0.0:8000"]
