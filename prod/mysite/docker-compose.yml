@@ -1,4 +1,4 @@
-version: "3.10.12"
+version: '3.10'
 
 services:
   app:
@@ -14,7 +14,7 @@ services:
       - "8000:8000"
     restart: always
     environment:
-      - .env
+      - DJANGO_SETTINGS_MODULE=mysite.settings
     logging:
       driver: "json-file"
       options:
