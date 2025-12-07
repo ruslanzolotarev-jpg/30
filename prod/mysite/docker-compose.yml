@@ -1,24 +1,11 @@
 version: '3.10'
 
 services:
-  app:
-    build:
-      context: ./my-service-two
-      dockerfile: Dockerfile
-    command:
-      - gunicorn
-      - mysite.wsgi:application
-      - --bind
-      - 0.0.0.0:8000
+  web:
+    build: .
+    command: bash -c "python manage.py collectstatic --noinput && gunicorn mysite.wsgi:application --bind 0.0.0.0:8000"
     ports:
       - "8000:8000"
-    restart: always
-    environment:
-      - DJANGO_SETTINGS_MODULE=mysite.settings
-    logging:
-      driver: "json-file"
-      options:
-        max-file: "10"
-        max-size: "200k"
+    restart: always # Автоматически перезапустить сервис при падении
     volumes:
-      - ./mysite/database:/app/database
+      - .:/code
