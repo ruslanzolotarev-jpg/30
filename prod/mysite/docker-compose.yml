@@ -3,6 +3,7 @@ version: '3.10'
 services:
   app:
     build:
+      context: ./my-service-two
       dockerfile: Dockerfile
     command:
       - gunicorn
