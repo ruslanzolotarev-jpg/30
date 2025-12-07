@@ -1,15 +1,27 @@
-FROM python:3.10.12
+# Используем базовую Python-образ с нужной версией
+FROM python:3.10.12-slim-buster
 
+# Устанавливаем необработанный вывод Python для лучшего взаимодействия с контейнером
 ENV PYTHONUNBUFFERED=1
 
+# Рабочая директория приложения
 WORKDIR /app
 
-RUN pip install --upgrade pip "poetry==1.5.1"
+# Обновляем Pip и устанавливаем Poetry
+RUN pip install --upgrade pip \
+    && pip install "poetry==1.5.1"
+
+# Настраиваем Poetry, чтобы он не создавал виртуальное окружение
 RUN poetry config virtualenvs.create false --local
 
-COPY poetry.lock  pyproject.toml ./
-RUN poetry install
+# Копируем зависимости перед кодом приложения
+COPY pyproject.toml poetry.lock ./
 
+# Устанавливаем зависимости с использованием Poetry
+RUN poetry install --no-root
+
+# Копируем весь исходный код нашего Django-приложения
 COPY mysite .
 
-CMD ["gunicorn", "mysite.wsgi:application", "--bind", "0.0.0.0:8000"]
+# Запускаем сервер Gunicorn
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "mysite.wsgi:application"]
