@@ -3,7 +3,7 @@ version: '3.10'
 services:
   web:
     build:
-      context: https://github.com/ruslanzolotarev-jpg/30.git
+      context: ./ruslanzolotarev-jpg/30/prod/mysite/Dockerfile
     command: bash -c "python manage.py collectstatic --noinput && gunicorn mysite.wsgi:application --bind 0.0.0.0:8000"
     ports:
       - "8000:8000"
