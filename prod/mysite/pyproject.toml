@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "your-project-name"
+name = "mysite"
 version = "0.1.0"
 description = ""
 license = "MIT"
