@@ -4,6 +4,7 @@ version = "0.1.0"
 description = ""
 license = "MIT"
 readme = "README.md"
+authors = ["Ruslan Zolotarev <666ruslanzolotarev@gmail.com>"]
 packages = [{include = "mysite"}]
 
 [tool.poetry.dependencies]

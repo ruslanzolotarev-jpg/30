@@ -18,8 +18,6 @@ python-versions = "*"
 source = { type = "pypi", reference = "pypi", resolved_reference = "https://files.pythonhosted.org/packages/e8/cf/dd/psycopg2_binary-2.9.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"}
 dependencies = []
 
-...
-
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
@@ -37,4 +35,3 @@ django = [
 psycopg2-binary = [
     { file = "psycopg2_binary-2.9.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a..." },
 ]
-...
