@@ -22,7 +22,6 @@ dependencies = []
 lock-version = "2.0"
 python-versions = "^3.8"
 content-hash = "..."
-categories = {"main": [], "dev": []}
 hash = []
 packages = []
 sources = [{type = "legacy", url = "https://pypi.org/simple/", verify_ssl = true}]
