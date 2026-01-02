@@ -1,5 +1,5 @@
 # Используем базовую Python-образ с нужной версией
-FROM python:3.12-slim-buster
+FROM python:3.12
 
 # Устанавливаем необработанный вывод Python для лучшего взаимодействия с контейнером
 ENV PYTHONUNBUFFERED=1
