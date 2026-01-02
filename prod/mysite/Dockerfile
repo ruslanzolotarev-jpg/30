@@ -9,7 +9,7 @@ WORKDIR /app
 
 # Обновляем Pip и устанавливаем Poetry
 RUN pip install --upgrade pip \
-    && pip install "poetry==1.5.1"
+    && pip install "poetry==1.8.2"
 
 # Настраиваем Poetry, чтобы он не создавал виртуальное окружение
 RUN poetry config virtualenvs.create false --local
