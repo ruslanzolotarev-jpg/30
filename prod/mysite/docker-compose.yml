@@ -1,0 +1,22 @@
+version: '3.12'
+
+services:
+  app:
+    build:
+      context: .  # точка обозначает текущий рабочий каталог
+      dockerfile: Dockerfile
+    command:
+      - gunicorn
+      - mysite.wsgi:application
+      - --bind
+      - 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    restart: always
+    environment:
+      - DJANGO_SETTINGS_MODULE=mysite.settings
+    logging:
+      driver: json-file
+      options:
+        max-file: "10"
+        max-size: "200k"
